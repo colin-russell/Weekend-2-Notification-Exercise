@@ -10,20 +10,26 @@
 
 @interface SecondViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *countLabel;
+@property (nonatomic) NSNumber *count;
+
 @end
 
 @implementation SecondViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCount:) name:@"StepperNotification" object:nil];
+    
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
+
+
+- (void)changeCount:(NSNotification *)notification {
+    self.countLabel.text = [NSString stringWithFormat:@"count: %@",[notification.userInfo valueForKey:@"stepper"]];
+    
+    //self.countLabel.text = [NSString stringWithFormat:@"count: %@", countValue];
+}
 
 @end
