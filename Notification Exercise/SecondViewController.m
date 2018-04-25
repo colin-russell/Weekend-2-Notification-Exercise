@@ -17,19 +17,26 @@
 
 @implementation SecondViewController
 
+//- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+//    self = [super initWithCoder:aDecoder];
+//    if (self)
+//    {
+//       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCount:) name:@"StepperNotification" object:nil];
+//    }
+//    
+//    return self;
+//    
+//}
+
 - (void)viewDidLoad {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCount:) name:@"StepperNotification" object:nil];
     
 }
 
 
-
-
-
 - (void)changeCount:(NSNotification *)notification {
     self.countLabel.text = [NSString stringWithFormat:@"count: %@",[notification.userInfo valueForKey:@"stepper"]];
     
-    //self.countLabel.text = [NSString stringWithFormat:@"count: %@", countValue];
 }
 
 @end
